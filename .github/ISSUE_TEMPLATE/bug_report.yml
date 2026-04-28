@@ -1,0 +1,63 @@
+name: Bug report
+description: Report a runtime error, crash, or unexpected failure.
+title: "bug: "
+labels:
+  - bug
+  - needs reproduction
+body:
+  - type: markdown
+    attributes:
+      value: Thanks for taking the time to report a bug. A minimal reproduction helps a lot.
+  - type: textarea
+    id: summary
+    attributes:
+      label: Summary
+      description: What happened?
+    validations:
+      required: true
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: ESLint config
+      description: Include the smallest flat config needed to reproduce the issue.
+      render: js
+    validations:
+      required: true
+  - type: textarea
+    id: code
+    attributes:
+      label: Input code
+      description: Include the smallest file or class string that triggers the issue.
+      render: jsx
+    validations:
+      required: true
+  - type: textarea
+    id: tailwind
+    attributes:
+      label: Tailwind CSS entry
+      description: Include relevant theme tokens if the issue depends on them.
+      render: css
+  - type: textarea
+    id: actual
+    attributes:
+      label: Actual behavior
+      description: Include error output, stack trace, messages, or autofix output.
+      render: markdown
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behavior
+      description: What should have happened instead?
+      render: markdown
+    validations:
+      required: true
+  - type: input
+    id: versions
+    attributes:
+      label: Versions
+      description: Include Node.js, ESLint, Tailwind CSS, and this plugin version.
+      placeholder: "Node 20.11, ESLint 9.x, Tailwind CSS 4.x, plugin 0.1.0"
+    validations:
+      required: true

@@ -1,0 +1,33 @@
+name: Configuration question
+description: Ask for help configuring the plugin.
+title: "config: "
+labels:
+  - documentation
+  - needs reproduction
+body:
+  - type: textarea
+    id: question
+    attributes:
+      label: Question
+      description: What are you trying to configure?
+    validations:
+      required: true
+  - type: textarea
+    id: config
+    attributes:
+      label: ESLint config
+      render: js
+    validations:
+      required: true
+  - type: input
+    id: tailwind_entry
+    attributes:
+      label: Tailwind entry path
+      description: Optional unless your question depends on theme token discovery.
+      placeholder: app/globals.css
+  - type: textarea
+    id: code
+    attributes:
+      label: Example class string
+      description: Optional, but helpful when the question involves a specific autofix or helper call.
+      render: jsx

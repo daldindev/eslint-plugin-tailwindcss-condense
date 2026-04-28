@@ -1,0 +1,13 @@
+@import "tailwindcss";
+
+@utility gap-gutter {
+  gap: 1rem;
+}
+
+@utility gap-x-gutter {
+  column-gap: 1rem;
+}
+
+@utility gap-y-gutter {
+  row-gap: 1rem;
+}

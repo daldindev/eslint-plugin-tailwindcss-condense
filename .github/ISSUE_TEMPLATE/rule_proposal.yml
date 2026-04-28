@@ -1,0 +1,34 @@
+name: Rule proposal
+description: Propose a new rule or a deliberate expansion of an existing rule.
+title: "proposal: "
+labels:
+  - enhancement
+  - rule proposal
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem
+      description: What repeated Tailwind class pattern should the plugin help with?
+    validations:
+      required: true
+  - type: textarea
+    id: examples
+    attributes:
+      label: Examples
+      description: Show incorrect and correct code.
+      render: jsx
+    validations:
+      required: true
+  - type: textarea
+    id: constraints
+    attributes:
+      label: Constraints
+      description: Note any Tailwind version, framework, or design-system details that matter.
+  - type: textarea
+    id: safety
+    attributes:
+      label: Autofix safety
+      description: Why can this transformation be applied without changing the rendered result?
+    validations:
+      required: true

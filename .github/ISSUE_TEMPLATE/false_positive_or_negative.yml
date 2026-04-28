@@ -1,0 +1,60 @@
+name: False positive or false negative
+description: Report rule behavior that should or should not be flagged.
+title: "rule: "
+labels:
+  - needs reproduction
+body:
+  - type: dropdown
+    id: kind
+    attributes:
+      label: Report type
+      options:
+        - False positive
+        - False negative
+    validations:
+      required: true
+  - type: input
+    id: rule
+    attributes:
+      label: Rule
+      placeholder: tailwindcss-condense/prefer-class-shorthand
+    validations:
+      required: true
+  - type: textarea
+    id: input
+    attributes:
+      label: Input code
+      description: Include the smallest class string that reproduces the report.
+      render: jsx
+    validations:
+      required: true
+  - type: textarea
+    id: actual
+    attributes:
+      label: Actual result
+      description: Show the reported message, autofix output, or lack of report.
+      render: jsx
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected result
+      description: Show the output or rule behavior you expected.
+      render: jsx
+    validations:
+      required: true
+  - type: textarea
+    id: tailwind
+    attributes:
+      label: Tailwind CSS entry
+      description: Include theme tokens if they affect the result.
+      render: css
+  - type: input
+    id: versions
+    attributes:
+      label: Versions
+      description: Include Node.js, ESLint, Tailwind CSS, and this plugin version.
+      placeholder: "Node 20.11, ESLint 9.x, Tailwind CSS 4.x, plugin 0.1.0"
+    validations:
+      required: true

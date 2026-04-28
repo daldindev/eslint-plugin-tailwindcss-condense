@@ -1,0 +1,64 @@
+{
+  "name": "eslint-plugin-tailwindcss-condense",
+  "version": "0.1.0",
+  "description": "Autofix equivalent Tailwind CSS utilities and related variant order in ESLint.",
+  "author": "daldindev",
+  "license": "MIT",
+  "type": "module",
+  "engines": {
+    "node": ">=20.11.0"
+  },
+  "exports": {
+    ".": "./src/index.mjs",
+    "./create-plugin": "./src/create-plugin.mjs"
+  },
+  "files": [
+    "src",
+    "docs",
+    "CHANGELOG.md",
+    "LICENSE",
+    "README.md",
+    "package.json"
+  ],
+  "keywords": [
+    "eslint",
+    "eslint-plugin",
+    "eslintplugin",
+    "tailwind",
+    "tailwindcss",
+    "tailwindcss-v4",
+    "autofix",
+    "flat-config",
+    "utility-classes",
+    "variant-order"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/daldindev/eslint-plugin-tailwindcss-condense.git"
+  },
+  "bugs": {
+    "url": "https://github.com/daldindev/eslint-plugin-tailwindcss-condense/issues"
+  },
+  "homepage": "https://github.com/daldindev/eslint-plugin-tailwindcss-condense#readme",
+  "publishConfig": {
+    "access": "public",
+    "provenance": true
+  },
+  "scripts": {
+    "lint": "eslint .",
+    "test": "node tests/run.mjs",
+    "check": "npm run lint && npm test",
+    "pack:check": "npm pack --dry-run --cache .npm-cache",
+    "release:check": "npm run check && npm run pack:check",
+    "prepublishOnly": "npm run release:check"
+  },
+  "peerDependencies": {
+    "eslint": "^9.0.0",
+    "tailwindcss": "^4.0.0"
+  },
+  "devDependencies": {
+    "eslint": "^9.0.0",
+    "tailwindcss": "^4.0.0",
+    "vue-eslint-parser": "^10.0.0"
+  }
+}
