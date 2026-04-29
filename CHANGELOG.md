@@ -6,6 +6,12 @@ The format is based on Keep a Changelog and this project follows Semantic Versio
 
 ## [Unreleased]
 
+## [0.1.1] - 2026-04-29
+
+### Changed
+
+- Improved README rule examples, framework guidance, and documentation links.
+
 ## [0.1.0] - 2026-04-28
 
 ### Added

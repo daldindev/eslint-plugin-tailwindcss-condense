@@ -1,34 +1,41 @@
 # eslint-plugin-tailwindcss-condense
 
-Autofix Tailwind CSS class strings by collapsing safe equivalent utilities and keeping related variants close without loading Tailwind internals.
+Autofix Tailwind CSS class strings by collapsing **safe equivalent utilities** and keeping related variants close without loading Tailwind internals.
 
 ## Why use it
 
-`eslint-plugin-tailwindcss-condense` is intentionally narrower than a global Tailwind class sorter. It focuses on fixes that reduce class noise while preserving semantic meaning:
+`eslint-plugin-tailwindcss-condense` is intentionally narrower than a global Tailwind class sorter. It focuses on **safe autofixes** that reduce class noise while preserving semantic meaning:
 
 - Collapse equivalent utility groups to shorter Tailwind shorthands.
 - Keep related base, responsive, and state variants close together.
 - Normalize variant chains without globally reordering unrelated utilities.
-- Read Tailwind v4 `@theme` tokens without depending on Tailwind internal APIs.
-- Touch only static class strings that ESLint can safely autofix.
+- Read **Tailwind v4 `@theme` tokens** without depending on Tailwind internal APIs.
+- Touch only **static class strings** that ESLint can safely autofix.
 
 ## What it fixes
 
-Equivalent utilities become shorter utilities:
+[`tailwindcss-condense/normalize-class-spacing`](./docs/rules/normalize-class-spacing.md) trims and normalizes class spacing:
+
+```diff
+- <div className="  pt-4   pb-4  " />
++ <div className="pt-4 pb-4" />
+```
+
+[`tailwindcss-condense/prefer-class-shorthand`](./docs/rules/prefer-class-shorthand.md) makes equivalent utilities shorter:
 
 ```diff
 - <div className="pt-4 pb-4 border-l-2 border-r-2" />
 + <div className="py-4 border-x-2" />
 ```
 
-Related semantic families stay grouped:
+[`tailwindcss-condense/group-related-classes`](./docs/rules/group-related-classes.md) keeps related semantic families grouped:
 
 ```diff
 - <div className="bg-red-500 text-white hover:bg-red-600" />
 + <div className="bg-red-500 hover:bg-red-600 text-white" />
 ```
 
-Variants are ordered only inside the same semantic family:
+[`tailwindcss-condense/sort-class-variants`](./docs/rules/sort-class-variants.md) orders variants only inside the same semantic family:
 
 ```diff
 - <div className="lg:p-8 sm:p-2 md:p-5" />
@@ -77,7 +84,7 @@ Then run ESLint with autofix enabled:
 npx eslint . --fix
 ```
 
-For TypeScript, Vue, or other frameworks that need a custom parser, keep your existing parser setup and add `...tailwindcssCondense.configs["flat/recommended"]` after it. This plugin does not bundle a TypeScript or template parser.
+For TypeScript, Vue, or other frameworks that need a custom parser, keep your existing parser setup and add `...tailwindcssCondense.configs["flat/recommended"]` after it. This plugin **does not bundle a TypeScript or template parser**.
 
 ## Presets
 
@@ -112,7 +119,7 @@ export default [
 
 ## Theme Tokens
 
-The plugin understands Tailwind core values, arbitrary values, and custom `@theme` tokens. It does not parse custom `@utility` definitions.
+The plugin understands Tailwind core values, arbitrary values, and custom `@theme` tokens. It **does not parse custom `@utility` definitions**.
 
 By default it auto-discovers common CSS entry files:
 
@@ -125,6 +132,8 @@ By default it auto-discovers common CSS entry files:
 - `styles/globals.css`
 - `app.css`
 - `index.css`
+
+Next.js App Router projects are covered by the default theme discovery paths, including `app/globals.css` and `src/app/globals.css`.
 
 For custom structures, set theme files explicitly:
 
@@ -184,7 +193,7 @@ export default [
 ];
 ```
 
-Only static strings are fixed. Classes are not moved across separate function arguments, array elements, or conditional branches.
+Only **static strings** are fixed. Classes are not moved across separate function arguments, array elements, or conditional branches.
 
 ## Frameworks
 

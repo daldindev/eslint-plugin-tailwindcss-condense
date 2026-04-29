@@ -1,6 +1,6 @@
 {
   "name": "eslint-plugin-tailwindcss-condense",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Autofix equivalent Tailwind CSS utilities and related variant order in ESLint.",
   "author": "daldindev",
   "license": "MIT",
