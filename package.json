@@ -1,6 +1,6 @@
 {
   "name": "eslint-plugin-tailwindcss-condense",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Autofix equivalent Tailwind CSS utilities and related variant order in ESLint.",
   "author": "daldindev",
   "license": "MIT",
@@ -8,9 +8,18 @@
   "engines": {
     "node": ">=20.11.0"
   },
+  "types": "./src/index.d.ts",
   "exports": {
-    ".": "./src/index.mjs",
-    "./create-plugin": "./src/create-plugin.mjs"
+    ".": {
+      "types": "./src/index.d.ts",
+      "import": "./src/index.mjs",
+      "default": "./src/index.mjs"
+    },
+    "./create-plugin": {
+      "types": "./src/create-plugin.d.ts",
+      "import": "./src/create-plugin.mjs",
+      "default": "./src/create-plugin.mjs"
+    }
   },
   "files": [
     "src",
