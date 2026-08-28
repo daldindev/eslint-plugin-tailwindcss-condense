@@ -51,7 +51,7 @@ npm i -D eslint eslint-plugin-tailwindcss-condense tailwindcss
 Requirements:
 
 - Node.js `>=20.11`
-- ESLint v9
+- ESLint v9 or v10 (ESLint v10 itself requires Node.js `^20.19.0 || ^22.13.0 || >=24`)
 - Tailwind CSS v4
 - ESM flat config
 

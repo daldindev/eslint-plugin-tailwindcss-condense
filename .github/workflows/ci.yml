@@ -11,8 +11,21 @@ permissions:
 
 jobs:
   quality-check:
-    name: Quality check
+    name: Quality check (Node ${{ matrix.node-version }}, ESLint ${{ matrix.eslint-version }})
     runs-on: ubuntu-latest
+
+    strategy:
+      fail-fast: false
+      matrix:
+        node-version:
+          - 20.19
+          - 22
+          - 24
+        eslint-version:
+          - 10
+        include:
+          - node-version: 20.11
+            eslint-version: 9
 
     steps:
       - name: Checkout
@@ -21,11 +34,14 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: ${{ matrix.node-version }}
           cache: npm
 
       - name: Install dependencies
         run: npm ci
+
+      - name: Install ESLint ${{ matrix.eslint-version }}
+        run: npm install --no-save eslint@${{ matrix.eslint-version }}
 
       - name: Run quality checks
         run: npm run check

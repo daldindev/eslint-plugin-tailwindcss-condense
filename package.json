@@ -1,6 +1,6 @@
 {
   "name": "eslint-plugin-tailwindcss-condense",
-  "version": "0.1.2",
+  "version": "0.2.0",
   "description": "Autofix equivalent Tailwind CSS utilities and related variant order in ESLint.",
   "author": "daldindev",
   "license": "MIT",
@@ -62,12 +62,12 @@
     "prepublishOnly": "npm run release:check"
   },
   "peerDependencies": {
-    "eslint": "^9.0.0",
+    "eslint": "^9.0.0 || ^10.0.0",
     "tailwindcss": "^4.0.0"
   },
   "devDependencies": {
-    "eslint": "^9.0.0",
-    "tailwindcss": "^4.0.0",
-    "vue-eslint-parser": "^10.0.0"
+    "eslint": "^10.9.1",
+    "tailwindcss": "^4.3.3",
+    "vue-eslint-parser": "^10.4.1"
   }
 }

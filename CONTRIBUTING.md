@@ -17,7 +17,7 @@ npm run check
 - Do not use Tailwind internal APIs.
 - Do not infer custom `@utility` definitions.
 - Prefer safe autofixes over broad class cleanup.
-- Keep compatibility focused on ESLint v9 flat config and Tailwind CSS v4.
+- Keep compatibility focused on ESLint v9 and v10 flat config and Tailwind CSS v4.
 
 ## Pull Request Expectations
 
