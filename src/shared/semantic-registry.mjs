@@ -534,6 +534,14 @@ export function getShorthandGroupKey(entry) {
   ].join("|");
 }
 
+export function getShorthandMergeKey(entry) {
+  return [
+    getShorthandGroupKey(entry),
+    entry.value,
+    entry.negative ? "negative" : "positive",
+  ].join("|");
+}
+
 export function hasOverlappingCoverage(entries) {
   const seen = new Set();
 

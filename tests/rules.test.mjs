@@ -241,6 +241,91 @@ ruleTester.run(
         output: 'const view = <div className="rounded-t-sm" />;',
       },
       {
+        code: 'const view = <div className="pt-4 pb-4 pl-2" />;',
+        errors: [{ messageId: "preferClassShorthand" }],
+        output: 'const view = <div className="py-4 pl-2" />;',
+      },
+      {
+        code: 'const view = <div className="pl-2 pt-4 pb-4" />;',
+        errors: [{ messageId: "preferClassShorthand" }],
+        output: 'const view = <div className="pl-2 py-4" />;',
+      },
+      {
+        code: 'const view = <div className="px-2 pt-1 pb-1" />;',
+        errors: [{ messageId: "preferClassShorthand" }],
+        output: 'const view = <div className="px-2 py-1" />;',
+      },
+      {
+        code: 'const view = <div className="pt-4 custom-class pb-4 pl-2" />;',
+        errors: [{ messageId: "preferClassShorthand" }],
+        output: 'const view = <div className="py-4 custom-class pl-2" />;',
+      },
+      {
+        code: 'const view = <div className="pl-2 custom-class pt-4 pb-4" />;',
+        errors: [{ messageId: "preferClassShorthand" }],
+        output: 'const view = <div className="pl-2 custom-class py-4" />;',
+      },
+      {
+        code: 'const view = <div className="sm:pt-4 sm:pb-4 sm:pl-2" />;',
+        errors: [{ messageId: "preferClassShorthand" }],
+        output: 'const view = <div className="sm:py-4 sm:pl-2" />;',
+      },
+      {
+        code: 'const view = <div className="border-l-2 border-r-2 border-t-4" />;',
+        errors: [{ messageId: "preferClassShorthand" }],
+        output: 'const view = <div className="border-x-2 border-t-4" />;',
+      },
+      {
+        code: 'const view = <div className="-mt-2 -mb-2 -ml-4" />;',
+        errors: [{ messageId: "preferClassShorthand" }],
+        output: 'const view = <div className="-my-2 -ml-4" />;',
+      },
+      {
+        code: 'const view = <div className="pt-4 pl-2 pb-4" />;',
+        errors: [{ messageId: "preferClassShorthand" }],
+        output: 'const view = <div className="py-4 pl-2" />;',
+      },
+      {
+        code: 'const view = <div className="pt-4 pl-2 pb-4 pr-2" />;',
+        errors: [{ messageId: "preferClassShorthand" }],
+        output: 'const view = <div className="py-4 px-2" />;',
+      },
+      {
+        code: 'const view = <div className="w-6 pt-4 h-6 pb-4" />;',
+        errors: [{ messageId: "preferClassShorthand" }],
+        output: 'const view = <div className="size-6 py-4" />;',
+      },
+      {
+        code: 'const view = <div className="pt-4 text-white pb-4 bg-red-500" />;',
+        errors: [{ messageId: "preferClassShorthand" }],
+        output: 'const view = <div className="py-4 text-white bg-red-500" />;',
+      },
+      {
+        code: 'const view = <div className="sm:pt-4 sm:pl-2 sm:pb-4" />;',
+        errors: [{ messageId: "preferClassShorthand" }],
+        output: 'const view = <div className="sm:py-4 sm:pl-2" />;',
+      },
+      {
+        code: 'const view = <div className="p-8 justify-end pt-2 pb-2" />;',
+        errors: [{ messageId: "preferClassShorthand" }],
+        output: 'const view = <div className="p-8 justify-end py-2" />;',
+      },
+      {
+        code: 'const view = <div className="size-8 justify-end w-6 h-6" />;',
+        errors: [{ messageId: "preferClassShorthand" }],
+        output: 'const view = <div className="justify-end size-6" />;',
+      },
+      {
+        code: 'const view = <div className="px-8 justify-end pl-2 pr-2" />;',
+        errors: [{ messageId: "preferClassShorthand" }],
+        output: 'const view = <div className="justify-end px-2" />;',
+      },
+      {
+        code: 'const view = <div className="size-8 w-6 h-6" />;',
+        errors: [{ messageId: "preferClassShorthand" }],
+        output: 'const view = <div className="size-6" />;',
+      },
+      {
         code: 'const value = cn("pt-4 pb-4");',
         errors: [{ messageId: "preferClassShorthand" }],
         output: 'const value = cn("py-4");',
@@ -291,6 +376,14 @@ ruleTester.run(
       'const view = <div className="border bg-white border" />;',
       'const view = <div className="size-6 custom-size size-6" />;',
       'const view = <div className="gap-5 gap-x-2" />;',
+      // No shorthand expresses these: the left side belongs to `pl-2` and the
+      // right side to `px-4`, so there is nothing safe to collapse.
+      'const view = <div className="pt-1 pl-2 p-2 px-4" />;',
+      // Two utilities of the same breadth disagree on a side, so the input
+      // resolves by stylesheet order and no reduction can preserve it.
+      'const view = <div className="p-1 pt-1 p-4" />;',
+      'const view = <div className="rounded rounded-lg rounded-bl-lg" />;',
+      'const view = <div className="m-2 mb-2 -m-2" />;',
       'const view = <div className={`pt-${size} pb-8`} />;',
       'const view = <div className="content-center justify-end" />;',
       'const view = <div className="overflow-x-hidden overflow-y-auto" />;',
@@ -337,6 +430,11 @@ ruleTester.run(
       'const view = <div className="flex flex-row sm:flex-col" />;',
       'const view = <div className="border bg-white border" />;',
       'const view = <div className="p-4 text-white p-4" />;',
+      // Overlapping coverage blocks regrouping even when the values differ, so
+      // the padding family stays put instead of being pulled together.
+      'const view = <div className="p-4 text-white pt-2" />;',
+      'const view = <div className="px-4 text-white pl-2" />;',
+      'const view = <div className="md:p-4 text-white md:pt-2" />;',
       'const view = <div className="text-white bg-black text-white" />;',
       'const view = <div className="rounded flex rounded" />;',
       'const view = <div className="border-b flex border-t" />;',
@@ -407,6 +505,9 @@ ruleTester.run(
       'const view = <div className="md:p-4 sm:p-2 md:p-4" />;',
       'const view = <div className="md:text-white sm:text-black md:text-white" />;',
       'const view = <div className="md:border-t sm:border-y sm:border-t" />;',
+      // Overlapping coverage blocks sorting even when the values differ.
+      'const view = <div className="lg:p-8 sm:p-2 sm:pt-1" />;',
+      'const view = <div className="sm:pt-1 lg:p-8 sm:p-2" />;',
     ],
   },
 );
